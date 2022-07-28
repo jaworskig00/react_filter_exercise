@@ -1,18 +1,22 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { getFilteredPeople } from "../redux/people/selectors";
 // ...
 
-function People(props) {
-  // ...
+function People({ people, query }) {
+  const renderPeople = useMemo(() => getFilteredPeople({ people, query }));
 
-  return (
-    <div>
-      {/* ... */}
-    </div>
-  );
+  return <div>{renderPeople}</div>;
 }
 
 People.propTypes = {
   // ...
 };
 
-export default People;
+const mapStateToProps = (state) => ({
+  people: state.people.list,
+  query: state.people.query,
+});
+
+export default connect(mapStateToProps)(People);
