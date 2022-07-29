@@ -33,6 +33,13 @@ export default function people(state = initialState, action) {
       return state;
     }
 
+    case types.SET_QUERY: {
+      return {
+        ...state,
+        query: action.payload
+      }
+    }
+
     default:
       return state;
   }
