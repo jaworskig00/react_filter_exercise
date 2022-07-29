@@ -1,9 +1,10 @@
-import { createStore } from 'redux';
-import rootReducer from './redux';
+import { configureStore } from '@reduxjs/toolkit';
+import people from './redux/people/reducer';
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = configureStore({
+  reducer: {
+    people: people,
+  },
+});
 
 export default store;

@@ -1,4 +1,6 @@
 import * as types from '../people/types';
+import { createSlice } from '@reduxjs/toolkit';
+import actions from './actions';
 
 const PEOPLE = [
   { id: 1, name: 'Jeffrey Perkins' },
@@ -25,15 +27,12 @@ const initialState = {
   query: '',
 };
 
-export default function people(state = initialState, action) {
-  switch (action.type) {
+export const people = createSlice({
+  name: 'people',
+  initialState: initialState,
+  reducers: actions
+})
 
-    // this is an example
-    case types.DO_NOTHING: {
-      return state;
-    }
+export const { setQuery } = people.actions
 
-    default:
-      return state;
-  }
-}
+export default people.reducer

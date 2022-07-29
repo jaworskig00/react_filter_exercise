@@ -1,14 +1,14 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { getFilteredPeople, selectPeople, selectQuery } from "../redux/people/selectors";
 // ...
 
-function People(props) {
-  // ...
+function People() {
+  const people = useSelector(selectPeople)
+  const query = useSelector(selectQuery)
+  const renderPeople = useMemo(() => getFilteredPeople({ people, query }));
 
-  return (
-    <div>
-      {/* ... */}
-    </div>
-  );
+  return <div>{renderPeople}</div>;
 }
 
 People.propTypes = {
